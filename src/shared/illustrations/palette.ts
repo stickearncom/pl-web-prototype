@@ -1,0 +1,20 @@
+/** Illustration palette. Mirrors tokens.css so SVG fills can be plain strings. */
+export const c = {
+  blue: '#004fa4',
+  blueDark: '#003069',
+  blueDeep: '#00234d',
+  navy: '#001730',
+  mint: '#00f4cb',
+  mintDeep: '#00d9b5',
+  mintSoft: '#bffff1',
+  sky50: '#f3f8ff',
+  sky100: '#e6f0ff',
+  sky200: '#d3e4fb',
+  sky300: '#b7d3ff',
+  sky400: '#86b5f5',
+  white: '#ffffff',
+  ink: '#0b1b33',
+  slate: '#6b7a93',
+  slateSoft: '#c3ccda',
+  line: '#dfe7f2',
+} as const

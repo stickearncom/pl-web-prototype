@@ -1,0 +1,151 @@
+/*
+ * Playlog design tokens.
+ * Source of truth for color, type, radius, shadow, and motion.
+ * Tailwind v4 reads this block and generates utilities (bg-brand-600, text-ink, rounded-xl, ...).
+ * When migrating to Next.js, copy this file as-is and import it from the global stylesheet.
+ */
+@theme {
+  /* Brand blue: 600 is the official #004FA4 */
+  --color-brand-50: #eef4fa;
+  --color-brand-100: #d9e8ff;
+  --color-brand-200: #b7d3ff;
+  --color-brand-300: #86b5f5;
+  --color-brand-400: #4a8ad8;
+  --color-brand-500: #1a66bc;
+  --color-brand-600: #004fa4;
+  --color-brand-700: #003f85;
+  --color-brand-800: #003a78;
+  --color-brand-900: #00244c;
+  --color-brand-950: #001a38;
+
+  /* Mint accent: 400 is the official #00F4CB. Never use mint as text on white. */
+  --color-mint-50: #e6fffa;
+  --color-mint-100: #bffff1;
+  --color-mint-200: #7fffe5;
+  --color-mint-300: #3df9d6;
+  --color-mint-400: #00f4cb;
+  --color-mint-500: #00d3af;
+  --color-mint-600: #00a98d;
+  --color-mint-700: #007f6b;
+
+  /* Neutrals, tinted toward the brand blue */
+  --color-ink: #0b1b33;
+  --color-slate-700: #2b3b55;
+  --color-slate-600: #4a5a75;
+  --color-slate-500: #6b7a93;
+  --color-slate-400: #94a1b6;
+  --color-slate-300: #c3ccda;
+  --color-slate-200: #e1e6ee;
+  --color-slate-100: #eff2f7;
+  --color-slate-50: #f4f7fb;
+
+  /* Semantic */
+  --color-success: #12b76a;
+  --color-warning: #f79009;
+  --color-danger: #d92d20;
+
+  /* Type */
+  --font-sans:
+    'Reddit Sans Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+
+  /* Radius: restrained, never full-round. Controls 8px, cards 12px, large panels 16px. */
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1rem;
+
+  /* Shadow, blue tinted */
+  --shadow-card: 0 1px 2px rgb(0 35 77 / 0.06), 0 8px 24px -8px rgb(0 35 77 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(0 35 77 / 0.06), 0 24px 48px -16px rgb(0 35 77 / 0.22);
+  --shadow-focus: 0 0 0 3px rgb(0 79 164 / 0.28);
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 700ms;
+  --duration-scene: 900ms;
+
+  /* Layout */
+  --container-page: 80rem;
+  --breakpoint-xs: 30rem;
+
+  --animate-marquee: marquee 48s linear infinite;
+  --animate-pulse-ring: pulse-ring 2.8s var(--ease-out-expo) infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.6);
+      opacity: 0.7;
+    }
+    80%,
+    100% {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+@keyframes route-flow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+.route-flow {
+  animation: route-flow 1.6s linear infinite paused;
+}
+
+.route-flow.is-flowing {
+  animation-play-state: running;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-flow {
+    animation: none;
+  }
+}
+
+@theme {
+  --animate-rise-in: rise-in 800ms var(--ease-out-expo) both;
+  @keyframes rise-in {
+    from {
+      transform: translateY(16px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}
