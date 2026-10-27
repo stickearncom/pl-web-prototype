@@ -12,6 +12,7 @@ import { IntelligenceMockup, SearchResultsCard } from '@/shared/mockups'
 import { ButtonLink, Reveal } from '@/shared/ui'
 import { billboardForm, FormSection, LeadForm } from '@/modules/leads'
 import { billboardContent as content } from './billboard-content'
+import { BillboardScene } from './components/billboard-scene'
 
 const plural = (n: number, one: string, many: string) => (n === 1 ? one : many)
 
@@ -45,6 +46,7 @@ export function BillboardPage() {
         title={content.explore.title}
         description={content.explore.description}
         items={content.explore.items}
+        visual={<BillboardScene />}
       />
 
       <Section tone="dark">

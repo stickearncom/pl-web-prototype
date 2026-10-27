@@ -60,3 +60,32 @@
 - Tailwind v4 tokens (`@theme`) and `@utility` blocks copy directly into the global CSS.
 - Replace `submitLead` stub with a route handler that mails info@playlog.io.
 - Routes: see `src/app/routes.tsx` for the path list; `/__lab` is dev-only, do not port.
+
+## Isometric scenes
+
+Scenes explain how something works; real photos prove it is real. Never use a scene as decoration
+and never put copy inside a scene that is not also in the HTML.
+
+- Kit: `src/shared/isometric` (true 30° projection, `TILE = 22`). World x runs lower right, y lower left,
+  z up. Only the top, the +y (left) and +x (right) faces are visible, so ad faces, windows and
+  screens always sit on those faces.
+- Draw order: ground layer first (slab, roads, heat, flow lines, rings), then objects back to front
+  (lower `x + y` first), then overlays (pins, badges). Moving cars only drive road arms where nothing
+  in front of them overlaps.
+- Materials come from `palette.ts` and mirror tokens.css. Light comes from the upper left: top lightest,
+  left mid, right darkest. Ad creatives are abstract colour blocks, never real brands.
+- Motion: stage changes crossfade (`keep` on `Billboard`), loops run through `useLoop` only while the
+  scene is on screen, and every loop freezes on its final state under `prefers-reduced-motion`.
+- Wrappers: `IsoStage` (fits the viewBox to the scene), `IsoCard` (soft card with an iso grid),
+  `SceneIntro` (copy left, scene right) and the `visual` slot on `SplitFeatures`.
+
+| Page                  | Scene                                     | Where                                                                    |
+| --------------------- | ----------------------------------------- | ------------------------------------------------------------------------ |
+| Home                  | City diorama: Plan, Execute, Measure      | "How Playlog works", sticky and scroll driven on desktop, tabs on mobile |
+| Planning              | Shortlist narrowing over audience traffic | Benefits intro                                                           |
+| Digital Billboard     | Screen rotating through ad slots          | Benefits intro                                                           |
+| Billboard             | Lift, install, verified with proof photo  | Explore section, under the header                                        |
+| Measurement           | Reach rings and growing bars (no figures) | Capabilities, under the header                                           |
+| Competitive Landscape | Rival territories, opportunity, claimed   | Opportunities intro                                                      |
+| About                 | Same plot across four eras                | Journey timeline                                                         |
+| 404                   | Empty billboard, a pin that cannot land   | Beside the message                                                       |

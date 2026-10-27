@@ -23,6 +23,40 @@ export const homeContent = {
     brandCaption:
       'Trusted by 300+ brands of all sizes. Built with love. Inspired by our customers.',
   },
+  story: {
+    eyebrow: 'How Playlog works',
+    title: 'One City. Three Moments.',
+    description:
+      'Every campaign moves through the same three moments. Playlog connects them in one integrated system.',
+    sceneLabel:
+      'Illustration of a small city with billboards along two roads, changing as the campaign moves from planning to execution to measurement.',
+    steps: [
+      {
+        key: 'plan',
+        tag: 'Plan',
+        title: 'Find the right locations',
+        description:
+          'Find the right locations with real-world market and audience traffic data. Zero guesswork.',
+        legend: 'Audience traffic and shortlisted billboards',
+      },
+      {
+        key: 'execute',
+        tag: 'Execute',
+        title: 'Keep delivery visible and verified',
+        description:
+          'Keep campaign delivery visible and verified. Track real-time progress and installation status directly.',
+        legend: 'Campaign live and verified on site',
+      },
+      {
+        key: 'measure',
+        tag: 'Measure',
+        title: 'Understand what every billboard delivers',
+        description:
+          'Understand campaign performance with impressions, reach, frequency, and deep per-inventory insights.',
+        legend: 'Impressions, reach and frequency per billboard',
+      },
+    ],
+  },
   platform: {
     eyebrow: 'The platform',
     title: 'Every stage of your campaign, in one place',
@@ -79,14 +113,14 @@ export const homeContent = {
     cta: { label: 'Explore Digital Billboards', to: routes.digitalBillboard },
     tiles: [
       {
-        src: '/media/billboard-corner.webp',
-        alt: 'Large digital billboard at a business district corner',
-        caption: 'Business district corner',
+        src: '/media/billboard-aqua-wall.webp',
+        alt: 'Large building-wall billboard above a pedestrian plaza',
+        caption: 'Building-wall billboard',
       },
       {
-        src: '/media/billboard-avenue.webp',
-        alt: 'Digital billboard above a busy city avenue',
-        caption: 'City avenue',
+        src: '/media/billboard-nescafe-columns.webp',
+        alt: 'Row of digital LED columns along a tree-lined sidewalk',
+        caption: 'Street-level LED columns',
       },
     ],
   },

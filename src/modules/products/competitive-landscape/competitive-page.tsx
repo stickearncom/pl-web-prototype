@@ -6,12 +6,13 @@ import {
   HeroCompose,
   MockupFeatureList,
   ProductHero,
-  SectionHeader,
+  SceneIntro,
   StagePanel,
 } from '@/shared/marketing'
 import { MarketActivityMockup, OpportunityMockup, SovCard } from '@/shared/mockups'
 import { ButtonLink, Reveal } from '@/shared/ui'
 import { competitiveForm, FormSection, LeadForm } from '@/modules/leads'
+import { CompetitiveScene } from './components/competitive-scene'
 import { competitiveContent as content } from './competitive-content'
 
 export function CompetitiveLandscapePage() {
@@ -59,9 +60,10 @@ export function CompetitiveLandscapePage() {
       </Section>
 
       <Section tone="muted">
-        <SectionHeader
+        <SceneIntro
           title={content.opportunities.title}
           description={content.opportunities.description}
+          scene={<CompetitiveScene />}
         />
         <div className="mt-16 md:mt-20">
           <MockupFeatureList items={content.opportunities.items} mockup={<OpportunityMockup />} />

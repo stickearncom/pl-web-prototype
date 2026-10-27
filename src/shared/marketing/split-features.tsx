@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import type { FeatureItem } from '@/shared/content'
 import { Section } from '@/shared/layout'
 import { IconTile, Reveal } from '@/shared/ui'
@@ -10,6 +11,7 @@ export function SplitFeatures({
   items,
   tone = 'default',
   id,
+  visual,
 }: {
   eyebrow?: string
   title: string
@@ -17,6 +19,8 @@ export function SplitFeatures({
   items: FeatureItem[]
   tone?: 'default' | 'muted'
   id?: string
+  /** Optional scene shown under the header (isometric illustration). */
+  visual?: ReactNode
 }) {
   return (
     <Section tone={tone} id={id}>
@@ -30,6 +34,7 @@ export function SplitFeatures({
           )}
           <h2 className="mt-6 text-h1 text-ink">{title}</h2>
           {description && <p className="mt-6 text-lead text-slate-600">{description}</p>}
+          {visual && <div className="mt-10 max-w-lg">{visual}</div>}
         </Reveal>
         <ul className="grid gap-5 sm:grid-cols-2">
           {items.map((item, i) => (

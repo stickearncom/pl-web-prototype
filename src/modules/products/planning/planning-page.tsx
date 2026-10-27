@@ -1,9 +1,10 @@
 import { Section } from '@/shared/layout'
 import { usePageMeta } from '@/shared/lib'
-import { CtaSection, FeatureGrid, ProductHero, SectionHeader } from '@/shared/marketing'
+import { CtaSection, FeatureGrid, ProductHero, SceneIntro } from '@/shared/marketing'
 import { CasesSection } from './components/cases-section'
 import { GallerySection } from './components/gallery-section'
 import { PlanningHeroVisual } from './components/planning-hero-visual'
+import { PlanningScene } from './components/planning-scene'
 import { WorkflowSection } from './components/workflow-section'
 import { planningContent } from './planning-content'
 
@@ -22,7 +23,11 @@ export function PlanningPage() {
         visual={<PlanningHeroVisual />}
       />
       <Section>
-        <SectionHeader title={benefits.title} description={benefits.description} />
+        <SceneIntro
+          title={benefits.title}
+          description={benefits.description}
+          scene={<PlanningScene />}
+        />
         <FeatureGrid items={benefits.items} columns={3} className="mt-16 md:mt-20" />
       </Section>
       <WorkflowSection />

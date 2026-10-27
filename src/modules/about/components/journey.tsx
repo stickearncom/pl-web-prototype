@@ -1,10 +1,11 @@
 import { Section } from '@/shared/layout'
 import { cn } from '@/shared/lib'
 import { Reveal } from '@/shared/ui'
+import { JourneyScene } from './journey-scenes'
 
 type Step = { stage: number; title: string; description: string }
 
-/** Four-step timeline of how OOH evolved. Replaces the old illustrated cards. */
+/** Four-step timeline of how OOH evolved, each stage with a small isometric scene of the same plot. */
 export function Journey({
   eyebrow,
   title,
@@ -41,6 +42,9 @@ export function Journey({
           return (
             <li key={step.title} className="relative">
               <Reveal delay={i * 0.1}>
+                <div aria-hidden className="mb-8 max-w-[15rem] sm:max-w-none">
+                  <JourneyScene index={i} />
+                </div>
                 <div className="flex items-center gap-4">
                   <span
                     className={cn(

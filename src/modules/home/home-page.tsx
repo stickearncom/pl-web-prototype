@@ -1,6 +1,7 @@
 import { usePageMeta } from '@/shared/lib'
 import { CtaSection } from '@/shared/marketing'
 import { BlogSection } from './components/blog-section'
+import { CityStory } from './components/city-story'
 import { DigitalShowcase } from './components/digital-showcase'
 import { HomeHero } from './components/home-hero'
 import { PlatformShowcase } from './components/platform-showcase'
@@ -13,6 +14,7 @@ export function HomePage() {
   return (
     <>
       <HomeHero />
+      <CityStory />
       <PlatformShowcase />
       <DigitalShowcase />
       <UspSection />
@@ -22,6 +24,10 @@ export function HomePage() {
         description={cta.description}
         primary={cta.primary}
         secondary={cta.secondary}
+        image={{
+          src: '/media/billboard-aqua-wall.webp',
+          alt: 'Large building-wall billboard above a pedestrian plaza',
+        }}
       />
     </>
   )

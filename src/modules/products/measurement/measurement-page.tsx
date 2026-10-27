@@ -12,6 +12,7 @@ import { LiveDashboardMockup, ReportingMockup } from '@/shared/mockups'
 import { ButtonLink, Reveal } from '@/shared/ui'
 import { FormSection, LeadForm, measurementForm } from '@/modules/leads'
 import { measurementContent as content } from './measurement-content'
+import { MeasurementScene } from './components/measurement-scene'
 
 export function MeasurementPage() {
   usePageMeta(content.meta)
@@ -42,6 +43,7 @@ export function MeasurementPage() {
         title={content.capabilities.title}
         description={content.capabilities.description}
         items={content.capabilities.items}
+        visual={<MeasurementScene />}
       />
 
       <Section tone="dark">

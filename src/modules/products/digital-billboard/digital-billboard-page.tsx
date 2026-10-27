@@ -1,7 +1,8 @@
 import { Section } from '@/shared/layout'
 import { usePageMeta } from '@/shared/lib'
-import { CtaSection, FeatureGrid, ProductHero, SectionHeader } from '@/shared/marketing'
+import { CtaSection, FeatureGrid, ProductHero, SceneIntro, SectionHeader } from '@/shared/marketing'
 import { DigitalHeroVisual } from './components/digital-hero-visual'
+import { DigitalScene } from './components/digital-scene'
 import { FormatsGallery } from './components/formats-gallery'
 import { LocationDetail } from './components/location-detail'
 import { PitchTabs } from './components/pitch-tabs'
@@ -51,7 +52,11 @@ export function DigitalBillboardPage() {
       </Section>
 
       <Section tone="muted">
-        <SectionHeader title={content.benefits.title} description={content.benefits.description} />
+        <SceneIntro
+          title={content.benefits.title}
+          description={content.benefits.description}
+          scene={<DigitalScene />}
+        />
         <FeatureGrid items={content.benefits.items} columns={4} className="mt-16 md:mt-20" />
       </Section>
 
