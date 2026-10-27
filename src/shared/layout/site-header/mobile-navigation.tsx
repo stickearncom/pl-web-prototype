@@ -2,9 +2,10 @@ import * as AccordionPrimitive from '@radix-ui/react-accordion'
 import * as Dialog from '@radix-ui/react-dialog'
 import { ChevronDown, Menu, X } from 'lucide-react'
 import { useState } from 'react'
-import { AppLink, routes } from '@/shared/lib'
+import { useLocation } from 'react-router-dom'
+import { AppLink, cn, routes } from '@/shared/lib'
 import { ButtonLink, Logo } from '@/shared/ui'
-import { guideLink, insightLinks, productLinks, type NavItem } from '../navigation'
+import { guideLink, insightLinks, isActiveNavPath, productLinks, type NavItem } from '../navigation'
 
 function Group({
   value,
@@ -17,10 +18,18 @@ function Group({
   items: NavItem[]
   close: () => void
 }) {
+  const { pathname } = useLocation()
+  const active = items.some(({ to }) => isActiveNavPath(pathname, to))
+
   return (
     <AccordionPrimitive.Item value={value} className="border-b border-slate-200">
       <AccordionPrimitive.Header>
-        <AccordionPrimitive.Trigger className="group flex w-full items-center justify-between py-4 text-lg font-semibold text-ink">
+        <AccordionPrimitive.Trigger
+          className={cn(
+            'group flex w-full items-center justify-between py-4 text-lg font-semibold tracking-[0.06em] text-ink uppercase',
+            active && 'text-brand-700',
+          )}
+        >
           {label}
           <ChevronDown
             aria-hidden
@@ -30,22 +39,29 @@ function Group({
       </AccordionPrimitive.Header>
       <AccordionPrimitive.Content className="overflow-hidden data-[state=closed]:animate-[accordion-up_250ms_var(--ease-out-expo)] data-[state=open]:animate-[accordion-down_250ms_var(--ease-out-expo)] motion-reduce:animate-none">
         <ul className="space-y-1 pb-3">
-          {items.map(({ label: itemLabel, to, icon: Icon }) => (
-            <li key={to}>
-              <AppLink
-                to={to}
-                onClick={close}
-                className="flex items-center gap-3 rounded-xl px-3 py-3 text-base text-slate-700 hover:bg-brand-50"
-              >
-                {Icon && (
-                  <span className="grid size-9 place-items-center rounded-lg bg-brand-600 text-white shadow-[-2px_2px_0_var(--color-mint-400)]">
-                    <Icon aria-hidden className="size-[18px]" strokeWidth={1.75} />
-                  </span>
-                )}
-                {itemLabel}
-              </AppLink>
-            </li>
-          ))}
+          {items.map(({ label: itemLabel, to, icon: Icon }) => {
+            const itemActive = isActiveNavPath(pathname, to)
+            return (
+              <li key={to}>
+                <AppLink
+                  to={to}
+                  onClick={close}
+                  aria-current={pathname === to ? 'page' : undefined}
+                  className={cn(
+                    'flex items-center gap-3 rounded-xl px-3 py-3 text-base tracking-[0.04em] text-slate-700 uppercase hover:bg-brand-50',
+                    itemActive && 'bg-brand-50 text-brand-700',
+                  )}
+                >
+                  {Icon && (
+                    <span className="grid size-9 place-items-center rounded-lg bg-brand-600 text-white shadow-[-2px_2px_0_var(--color-mint-400)]">
+                      <Icon aria-hidden className="size-[18px]" strokeWidth={1.75} />
+                    </span>
+                  )}
+                  {itemLabel}
+                </AppLink>
+              </li>
+            )
+          })}
         </ul>
       </AccordionPrimitive.Content>
     </AccordionPrimitive.Item>
@@ -54,6 +70,11 @@ function Group({
 
 export function MobileNavigation({ contactTo }: { contactTo: string }) {
   const [open, setOpen] = useState(false)
+  const { pathname } = useLocation()
+  const productsActive = productLinks.some(({ to }) => isActiveNavPath(pathname, to))
+  const insightsActive = insightLinks.some(({ to }) => isActiveNavPath(pathname, to))
+  const guideActive = isActiveNavPath(pathname, guideLink.to)
+  const aboutActive = isActiveNavPath(pathname, routes.about)
   const close = () => setOpen(false)
 
   return (
@@ -81,21 +102,33 @@ export function MobileNavigation({ contactTo }: { contactTo: string }) {
             </Dialog.Close>
           </div>
           <nav aria-label="Mobile" className="flex-1 overflow-y-auto px-5 pb-6">
-            <AccordionPrimitive.Root type="single" collapsible defaultValue="products">
+            <AccordionPrimitive.Root
+              type="single"
+              collapsible
+              defaultValue={insightsActive && !productsActive ? 'insights' : 'products'}
+            >
               <Group value="products" label="Products" items={productLinks} close={close} />
               <Group value="insights" label="OOH Insights" items={insightLinks} close={close} />
             </AccordionPrimitive.Root>
             <AppLink
               to={guideLink.to}
               onClick={close}
-              className="block border-b border-slate-200 py-4 text-lg font-semibold text-ink"
+              aria-current={pathname === guideLink.to ? 'page' : undefined}
+              className={cn(
+                'block border-b border-slate-200 py-4 text-lg font-semibold tracking-[0.06em] uppercase',
+                guideActive ? 'text-brand-700' : 'text-ink',
+              )}
             >
               {guideLink.label}
             </AppLink>
             <AppLink
               to={routes.about}
               onClick={close}
-              className="block border-b border-slate-200 py-4 text-lg font-semibold text-ink"
+              aria-current={pathname === routes.about ? 'page' : undefined}
+              className={cn(
+                'block border-b border-slate-200 py-4 text-lg font-semibold tracking-[0.06em] uppercase',
+                aboutActive ? 'text-brand-700' : 'text-ink',
+              )}
             >
               About us
             </AppLink>

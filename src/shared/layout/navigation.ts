@@ -4,6 +4,10 @@ import { routes } from '@/shared/lib'
 
 export type NavItem = { label: string; to: string; description?: string; icon?: LucideIcon }
 
+export function isActiveNavPath(pathname: string, to: string) {
+  return pathname === to || pathname.startsWith(`${to}/`)
+}
+
 export const productLinks: NavItem[] = [
   {
     label: 'Planning',
