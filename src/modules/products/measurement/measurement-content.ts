@@ -21,7 +21,8 @@ export const measurementContent = {
   },
   hero: {
     eyebrow: 'Billboard Campaign Measurement Standard',
-    title: 'Measure Billboard Performance Beyond Impressions',
+    title: 'Measure Billboard Performance',
+    accent: 'Beyond Impressions',
     description:
       'Every billboard campaign generates data. Our measurement turns that data into clear, actionable insights and helps you understand campaign performance, demonstrate results to stakeholders, and make smarter decisions for your next campaign.',
     primary: { label: 'Start Measuring', to: ctaLinks.startCampaign },

@@ -1,13 +1,6 @@
 import type { FaqItem } from '@/shared/content'
 import { Section } from '@/shared/layout'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-  EyebrowBadge,
-  Reveal,
-} from '@/shared/ui'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, Reveal } from '@/shared/ui'
 
 export function FaqSection({
   title = 'Frequently asked questions',
@@ -26,9 +19,12 @@ export function FaqSection({
     <Section tone={tone} id={id}>
       <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal className="lg:sticky lg:top-28 lg:self-start">
-          <EyebrowBadge>FAQ</EyebrowBadge>
-          <h2 className="mt-5 text-h2">{title}</h2>
-          {description && <p className="mt-4 text-lead text-slate-600">{description}</p>}
+          <p className="flex items-center gap-3 text-eyebrow text-brand-700">
+            <span aria-hidden className="h-0.5 w-8 bg-mint-500" />
+            FAQ
+          </p>
+          <h2 className="mt-6 text-h2">{title}</h2>
+          {description && <p className="mt-5 text-lead text-slate-600">{description}</p>}
         </Reveal>
         <Reveal delay={0.1}>
           <Accordion type="single" collapsible defaultValue="item-0">

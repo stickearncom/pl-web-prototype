@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "anti-slop-design": {
+      "source": "wwewtech/anti-slop-design",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "e0d289997f2e7c5a04b020c53a5a727a2d8ee97ae27333aada9c853af8b058a0"
+    },
+    "design-taste-frontend": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/taste-skill/SKILL.md",
+      "computedHash": "6ac8ba6089dcbc303744a507a4587113c5d845ca2f658b3ce2b0b5eab108fb0d"
+    }
+  }
+}

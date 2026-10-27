@@ -9,7 +9,9 @@ export const competitiveContent = {
       'Explore competitor billboard activity, Share of Voice, and market trends to find advertising opportunities before you launch.',
   },
   hero: {
-    title: 'Understand the Billboard Market Before You Advertise',
+    eyebrow: 'Competitive landscape',
+    title: 'Understand the Billboard Market',
+    accent: 'Before You Advertise',
     description:
       'Explore competitor activity, identify advertising opportunities, and make smarter campaign decisions with data-driven market intelligence.',
     primary: { label: 'Explore Competitive Landscape', to: '#explore' },

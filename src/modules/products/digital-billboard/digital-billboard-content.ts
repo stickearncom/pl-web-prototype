@@ -9,7 +9,9 @@ export const digitalBillboardContent = {
       'Find, evaluate, and choose digital billboards using audience, location, campaign history, and market data in one platform.',
   },
   hero: {
-    title: 'Find the Right Digital Billboard. Backed by Data.',
+    eyebrow: 'Digital billboard',
+    title: 'Find the Right Digital Billboard.',
+    accent: 'Backed by Data.',
     description:
       'One platform. Multiple digital billboard opportunities, matched to your audience, location, and market data.',
     primary: { label: 'Explore Digital Billboards', to: '#explore' },
@@ -69,6 +71,38 @@ export const digitalBillboardContent = {
           'Explore available digital billboard locations across cities and areas based on your campaign needs.',
         points: ['City', 'Area', 'Specific location', 'POI', 'Audience area'],
         cta: { label: 'Explore Locations', to: ctaLinks.talkToExpert },
+      },
+    ],
+  },
+  formats: {
+    title: 'Digital Screens in Every Format',
+    description:
+      'From street-level columns to building-wide screens, explore the digital formats available across the city.',
+    items: [
+      {
+        src: '/media/billboard-mobile-led.webp',
+        alt: 'Mobile stage with a large LED screen at an event',
+        caption: 'Mobile LED stage',
+      },
+      {
+        src: '/media/billboard-facade-superstar.webp',
+        alt: 'Vertical LED screen on a mall facade',
+        caption: 'Building facade screen',
+      },
+      {
+        src: '/media/billboard-corner-led.webp',
+        alt: 'Large LED screen on a building corner',
+        caption: 'Building-corner screen',
+      },
+      {
+        src: '/media/billboard-lego-bridge.webp',
+        alt: 'Large screen above a bridge entrance to a shopping center',
+        caption: 'Bridge-side screen',
+      },
+      {
+        src: '/media/billboard-gemini-curved.webp',
+        alt: 'Curved LED screen beside an elevated road',
+        caption: 'Curved LED screen',
       },
     ],
   },

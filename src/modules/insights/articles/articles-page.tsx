@@ -1,8 +1,6 @@
 import { articleItems } from '@/shared/content'
-import { InsightsScene } from '@/shared/illustrations'
-import { routes, usePageMeta } from '@/shared/lib'
-import { ContentListing, CtaSection, PageHero } from '@/shared/marketing'
-import { ctaLinks } from '@/shared/lib'
+import { ctaLinks, routes, usePageMeta } from '@/shared/lib'
+import { ContentListing, CoverStack, CtaSection, ProductHero } from '@/shared/marketing'
 
 const meta = {
   title: 'Playlog Insight',
@@ -14,12 +12,13 @@ export function ArticlesPage() {
   usePageMeta(meta)
   return (
     <>
-      <PageHero
+      <ProductHero
         eyebrow="Playlog Insight"
-        title="Know the OOH Market Before You Make Your Move"
+        title="Know the OOH Market"
+        accent="Before You Make Your Move"
         description="Explore data-driven research on Indonesia’s Out-of-Home advertising market, from industry trends and competitor activity to audience behavior and media opportunities."
-        primary={{ label: 'Read More', to: '#articles' }}
-        visual={<InsightsScene />}
+        primary={{ label: 'Read the research', to: '#articles' }}
+        visual={<CoverStack items={articleItems} />}
       />
       <ContentListing
         id="articles"
@@ -30,6 +29,7 @@ export function ArticlesPage() {
         basePath={routes.insightArticles}
         searchLabel="Search insights"
         tone="muted"
+        featureFirst
       />
       <CtaSection
         title="Turn Market Insights Into Your Next Campaign"

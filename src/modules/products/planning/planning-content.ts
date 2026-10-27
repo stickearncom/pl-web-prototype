@@ -9,7 +9,9 @@ export const planningContent = {
       'Playlog Planning helps brands and agencies build billboard campaigns with audience intelligence, competitor analysis, and location insights.',
   },
   hero: {
-    title: 'Plan Smarter. Advertise Better.',
+    eyebrow: 'Playlog Planning',
+    title: 'Plan Smarter.',
+    accent: 'Advertise Better.',
     description:
       'Playlog Planning helps brands and agencies build smarter billboard campaigns with audience intelligence, competitor analysis, and location insights, all in one connected platform. Stop guessing where to advertise and start planning campaigns backed by real-world data.',
     primary: { label: 'Start Planning', to: ctaLinks.startCampaign },
@@ -97,6 +99,7 @@ export const planningContent = {
           'Consultative Deck',
         ],
         cta: { label: 'Talk to a Planning Expert', to: ctaLinks.talkToExpert },
+        visual: 'brief',
       },
       {
         title: 'Finalize Your Campaign Plan',
@@ -109,6 +112,7 @@ export const planningContent = {
           'Planning Summary',
         ],
         cta: { label: 'Start Your Campaign', to: ctaLinks.startCampaign },
+        visual: 'readiness',
       },
     ],
   },
@@ -116,13 +120,24 @@ export const planningContent = {
     title: 'Trusted by Leading Brands and Agencies',
     description:
       'Hundreds of marketing teams use Playlog Planning to simplify campaign preparation and make better billboard advertising decisions.',
-    // TODO(marcom): set `src` to a real campaign photo. Until then the illustrated stand-in is shown.
+    // Photos supplied by Playlog. Captions are generic; replace with campaign details if wanted.
     items: [
-      { alt: 'Billboard campaign on a busy city road', tone: 'blue', seed: 0 },
-      { alt: 'Billboard campaign beside an office district', tone: 'white', seed: 1 },
-      { alt: 'Billboard campaign near a shopping area', tone: 'mint', seed: 2 },
-      { alt: 'Billboard campaign along an arterial road', tone: 'navy', seed: 3 },
-    ] as { alt: string; tone: 'blue' | 'navy' | 'white' | 'mint'; seed: number; src?: string }[],
+      {
+        src: '/media/billboard-aqua-wall.webp',
+        alt: 'Large building-wall billboard above a pedestrian plaza',
+        caption: 'Building-wall billboard',
+      },
+      {
+        src: '/media/billboard-static-mrdiy.webp',
+        alt: 'Static billboard on a steel frame over a city street',
+        caption: 'Static billboard',
+      },
+      {
+        src: '/media/billboard-corner-led.webp',
+        alt: 'Large LED screen on a building corner in a business district',
+        caption: 'Building-corner LED',
+      },
+    ],
   },
   cases: {
     title: 'See How Brands Plan Better Campaigns',
@@ -134,21 +149,21 @@ export const planningContent = {
         title: 'Planning Billboard Locations Around High-Traffic Areas',
         description:
           'Using location and audience data to explore billboard opportunities around areas with strong consumer activity.',
-        cover: 2,
+        thumb: 'traffic' as const,
       },
       {
         label: 'Brand Strategy',
         title: 'How a Tech Brand Found the Right Billboard Location',
         description:
           'Using location, audience, and surrounding POI data to identify billboard opportunities that reach the right audience.',
-        cover: 3,
+        thumb: 'poi' as const,
       },
       {
         label: 'Banking',
         title: 'Planning Billboard Locations for a Banking Brand',
         description:
           'Using competitor activity, location, and audience data to identify opportunities across key areas.',
-        cover: 4,
+        thumb: 'competitor' as const,
       },
     ],
     cta: { label: 'Read the story', to: routes.insightArticles },

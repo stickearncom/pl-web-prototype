@@ -15,6 +15,7 @@ export function PhotoFrame({
   className,
   eager = false,
   imgClassName,
+  position,
   children,
 }: {
   src: string
@@ -22,6 +23,8 @@ export function PhotoFrame({
   className?: string
   eager?: boolean
   imgClassName?: string
+  /** CSS object-position, e.g. '24% 50%' */
+  position?: string
   children?: React.ReactNode
 }) {
   return (
@@ -38,6 +41,7 @@ export function PhotoFrame({
           loading={eager ? 'eager' : 'lazy'}
           fetchPriority={eager ? 'high' : undefined}
           decoding="async"
+          style={position ? { objectPosition: position } : undefined}
           className={cn('size-full object-cover', imgClassName)}
         />
         {children}

@@ -12,42 +12,49 @@
 ## 2. Layout rules
 
 - Mobile first. `container-page` for width/gutters, `section-y` for vertical rhythm.
-- Alternate light / dark sections; never stack two dark sections (see `PopularItems tone`).
-- One shared final CTA (`CtaSection`) per page.
+- Alternate light / muted / dark navy sections; never stack two dark sections.
+- Header is transparent until scrolled. Hero sections sit under it with `-mt-20 pt-20`.
+- One shared final CTA (`CtaSection`) per page, with a photo.
+- Eyebrows are a mint rule plus uppercase text, not a pill. Headings are large and left-aligned.
 
-## 3. Motion policy
+## 3. Page building blocks (src/shared/marketing)
 
-- Motion (`motion/react`, LazyMotion + `m`) for reveal, hover, count-up. anime.js v4 (dynamic import) for SVG scene animation via `data-anim` (rise/pop/slide/fade/draw/pulse), triggered by IntersectionObserver.
-- `prefers-reduced-motion`: MotionConfig `reducedMotion="user"`, anime.js skipped, marquee becomes a static wrapped grid.
+- Heroes: `ProductHero` (light gradient, angular `HeroBackdrop`), with a visual from `HeroCompose` (`behind` or `card` variant), `PhotoFrame`, or `CoverStack` (insights).
+- Sections: `SplitFeatures` (sticky header + large cards), `MockupFeatureList` (mockup + divided list, light or dark), `StageBlock` / `StagePanel`, `FeatureGrid`, `StatsRow`, `FaqSection`, `CtaSection`.
+- Content: `ContentListing` (search, filter, featured first), `ContentCard`, `ContentDetail` (shell with sticky table of contents), `ArticleBlocks` (renders the block types in `contracts.ts`).
+- Visual language: `PhotoFrame` and `InsightCover` use a cut top-left corner and a mint extrusion, echoing the logo. Buttons and cards stay at 8 / 12 / 16px radius.
+
+## 4. Motion policy
+
+- Motion (`motion/react`, `LazyMotion` + `m`) for reveal, hover, parallax, count-up, path drawing. Only transform and opacity are animated (plus the route-flow stroke offset in CSS).
+- Ambient loops (`LiveDot`, `PulseRing`, route flow, `LiveCounter`) run only while in view and while the tab is visible (`useAmbient`).
+- `prefers-reduced-motion`: `MotionConfig reducedMotion="user"`, ambient loops stop, video does not autoplay, marquee becomes a static wrapped grid.
 - Hero text is only translateY-animated (no opacity fade) to protect LCP.
-- Marquee has no pause control (decorative, auto-looping logos only).
+- Marquee has no pause control (decorative logos only). The homepage video has a pause/play button and plays only while visible.
 
-## 4. Imagery and illustration
+## 4b. Imagery
 
-- Homepage direction (v2): real billboard photos (`public/media`) in `PhotoFrame` (cut corner + mint extrusion) and HTML/SVG product-UI mockups (`shared/mockups`) instead of cartoon scenes. Other pages still use the older SVG scenes and are migrated page by page.
-- Motion on the homepage is Motion-only (transform/opacity/pathLength). Video loops only while visible, never autoplays with reduced motion, and has a pause/play button.
-
-### Legacy illustration language
-
-- Oblique extrusion toward lower-left, mint side faces, same as the logo (`iso.tsx` `Extrude`).
-- Palette in `illustrations/palette.ts`. Scenes in `scenes.tsx`; static covers in `covers.tsx`.
-- Each section gets a distinct scene; do not reuse the same scene twice on a page. Preview all at `/__lab` (dev only).
-- No emoji or generic icon-as-illustration. Lucide only for small UI icons.
+- Use real billboard photos from `public/media` (max 1600px wide, webp). Vary the photos across a page; do not repeat the same one in neighbouring sections.
+- Product UI is shown with HTML/SVG mockups (`shared/mockups`) filled with sample data. No cartoon scenes on redesigned pages.
+- Legacy: `shared/illustrations` (isometric scenes) and `/__lab` are no longer used by the redesigned pages and can be removed once nothing imports them.
+- Do not ship photos with identifiable third-party branding unless the rights are cleared by Marcom.
 
 ## 5. Content & placeholders
 
 - Copy lives next to each module (`*-content.ts`) and in `shared/content`.
 - Items with `isSample: true` show a "Sample" badge / notice. Remove the flag when real content lands.
+- Never invent statistics. Report chart blocks stay placeholders until the dataset is approved.
+- Block model for articles and reports: `docs/cms-content-model.md`.
 - CTA destinations are centralized in `ctaLinks` (`shared/lib/site-config.ts`).
 
 ## 6. Performance targets
 
-- LCP < 2.0s, CLS < 0.05, INP < 200ms. Routes are lazy; images lazy except hero; anime.js on demand.
+- LCP < 2.0s, CLS < 0.05, INP < 200ms. Routes are lazy; images lazy except hero. Redesigned pages do not load anime.js.
 
 ## 7. Next.js migration rules
 
 - Router access only via `AppLink`, `useAppNavigate`, `useSearchParam`, `usePageMeta`. Reimplement these four with `next/link`, `useRouter`, `useSearchParams`, and the Metadata API; nothing else imports react-router.
-- Add `"use client"` to components using hooks/motion/anime (scenes, forms, header, marquee, accordions).
+- Add `"use client"` to components using hooks or motion (forms, header, marquee, accordions, `Reveal`, `ArticleToc`, mockups with ambient motion).
 - Env: `VITE_*` -> `NEXT_PUBLIC_*` (`VITE_SITE_URL`, `VITE_LEAD_ENDPOINT`).
 - Images: `public/brands`, `public/brand` copy as-is; swap `<img>` for `next/image` where useful.
 - Tailwind v4 tokens (`@theme`) and `@utility` blocks copy directly into the global CSS.

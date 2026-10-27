@@ -1,30 +1,8 @@
 import { Eye, History, MapPin, Store, Users } from 'lucide-react'
-import { Extrude, LogoMark, MapCard, Pin, SceneFrame, c, rrect } from '@/shared/illustrations'
+import { MapCanvas } from '@/shared/mockups'
+import { Chip } from '@/shared/mockups'
 import { Reveal } from '@/shared/ui'
 import { digitalBillboardContent } from '../digital-billboard-content'
-
-function MapPreview() {
-  return (
-    <SceneFrame viewBox="0 0 520 360" label="Map preview of a digital billboard location">
-      <MapCard x={34} y={34} w={440} h={290} depth={14} />
-      <Pin x={250} y={200} r={18} front={c.mint} side={c.blueDeep} dot={c.blueDeep} />
-      <Pin x={140} y={140} r={11} pulse={false} />
-      <Pin x={370} y={120} r={11} pulse={false} />
-      <Extrude
-        points={rrect(332, 214, 120, 70, 8)}
-        depth={10}
-        front={c.blueDeep}
-        sideLeft={c.mint}
-        sideBottom={c.mintDeep}
-        anim="slide"
-      >
-        <LogoMark x={348} y={226} size={22} />
-        <rect x={382} y={232} width={56} height={7} rx={3.5} fill={c.white} opacity={0.9} />
-        <rect x={382} y={248} width={38} height={7} rx={3.5} fill={c.white} opacity={0.5} />
-      </Extrude>
-    </SceneFrame>
-  )
-}
 
 function Row({
   icon: Icon,
@@ -36,16 +14,16 @@ function Row({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex items-start gap-4 py-4">
+    <div className="flex items-start gap-5 py-5">
       <span
         aria-hidden
-        className="mt-0.5 grid size-10 shrink-0 place-items-center rounded-xl bg-brand-600 text-white shadow-[-3px_3px_0_var(--color-mint-400)]"
+        className="mt-0.5 grid size-12 shrink-0 place-items-center rounded-lg bg-brand-600 text-white shadow-[-3px_3px_0_var(--color-mint-400)]"
       >
         <Icon className="size-5" strokeWidth={1.75} />
       </span>
       <div className="min-w-0">
         <dt className="text-eyebrow text-slate-500">{label}</dt>
-        <dd className="mt-1.5 text-lg font-semibold text-ink">{children}</dd>
+        <dd className="mt-2 text-xl font-semibold text-ink">{children}</dd>
       </div>
     </div>
   )
@@ -55,8 +33,8 @@ function Chips({ items }: { items: string[] }) {
   return (
     <ul className="flex flex-wrap gap-2 text-sm font-medium">
       {items.map((item) => (
-        <li key={item} className="rounded-md bg-brand-50 px-3 py-1 text-brand-700">
-          {item}
+        <li key={item}>
+          <Chip tone="brand">{item}</Chip>
         </li>
       ))}
     </ul>
@@ -68,20 +46,42 @@ export function LocationDetail() {
   const d = digitalBillboardContent.detail
   return (
     <Reveal>
-      <div className="overflow-hidden rounded-3xl bg-white text-ink shadow-lift ring-1 ring-white/10">
-        <div className="flex items-center gap-2 border-b border-slate-200 px-5 py-3.5">
-          <span className="size-2.5 rounded-md bg-brand-600" />
-          <span className="size-2.5 rounded-md bg-mint-400" />
-          <span className="size-2.5 rounded-md bg-brand-200" />
-          <span className="ml-3 text-sm font-semibold text-slate-600">
-            Digital billboard detail
+      <div className="overflow-hidden rounded-2xl bg-white text-ink shadow-lift ring-1 ring-white/10">
+        <div className="flex items-center gap-3 border-b border-slate-200 bg-slate-50 px-5 py-3.5">
+          <span aria-hidden className="flex gap-1.5">
+            <span className="size-2.5 rounded-full bg-slate-300" />
+            <span className="size-2.5 rounded-full bg-slate-300" />
+            <span className="size-2.5 rounded-full bg-slate-300" />
+          </span>
+          <span className="text-xs font-semibold text-slate-500">
+            Playlog · Digital billboard detail
           </span>
         </div>
         <div className="grid lg:grid-cols-[1.1fr_1fr]">
-          <div className="bg-slate-50 p-4 sm:p-6">
-            <MapPreview />
+          <div className="relative min-h-80 lg:min-h-[28rem]">
+            <img
+              src="/media/billboard-station-wide.webp"
+              alt="Wide LED screen above a station entrance"
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 size-full object-cover"
+            />
+            <div className="absolute bottom-5 left-5 w-48 overflow-hidden rounded-xl bg-white shadow-lift sm:w-56">
+              <div className="h-24">
+                <MapCanvas
+                  pins={[
+                    { x: 240, y: 150, active: true },
+                    { x: 110, y: 100 },
+                  ]}
+                />
+              </div>
+              <div className="flex items-center justify-between p-3">
+                <span className="text-xs font-semibold text-ink">Sudirman</span>
+                <Chip tone="mint">Digital · LED</Chip>
+              </div>
+            </div>
           </div>
-          <dl className="divide-y divide-slate-200 px-6 py-2 sm:px-8">
+          <dl className="divide-y divide-slate-200 px-6 py-3 sm:px-10">
             <Row icon={MapPin} label="Location">
               {d.location}
             </Row>
@@ -100,7 +100,7 @@ export function LocationDetail() {
           </dl>
         </div>
       </div>
-      <p className="mt-4 text-center text-sm text-white/60">{d.note}</p>
+      <p className="mt-5 text-center text-sm text-white/60">{d.note}</p>
     </Reveal>
   )
 }

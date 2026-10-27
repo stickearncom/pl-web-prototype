@@ -54,15 +54,15 @@ export function PlanningMockup() {
 
 const inventory = [
   {
-    name: 'Elevated toll road',
+    name: 'Sidewalk LED columns',
     type: 'Digital · LED',
-    img: '/media/billboard-flyover.webp',
+    img: '/media/billboard-nescafe-columns.webp',
     price: 'Available',
   },
   {
-    name: 'Business district corner',
+    name: 'Curved LED screen',
     type: 'Digital · LED',
-    img: '/media/billboard-corner.webp',
+    img: '/media/billboard-gemini-curved.webp',
     price: 'Available',
   },
 ]
@@ -126,7 +126,7 @@ export function VerificationMockup() {
       <div className="grid sm:grid-cols-[1.1fr_1fr]">
         <div className="relative min-h-48">
           <img
-            src="/media/billboard-avenue.webp"
+            src="/media/billboard-station-wide.webp"
             alt=""
             loading="lazy"
             decoding="async"

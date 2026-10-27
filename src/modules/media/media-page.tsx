@@ -1,7 +1,12 @@
 import { mediaItems } from '@/shared/content'
-import { InsightsScene } from '@/shared/illustrations'
 import { ctaLinks, routes, siteConfig, usePageMeta } from '@/shared/lib'
-import { ContentListing, CtaSection, PageHero } from '@/shared/marketing'
+import {
+  ContentListing,
+  CtaSection,
+  HeroCompose,
+  HeroNoteCard,
+  ProductHero,
+} from '@/shared/marketing'
 
 const meta = {
   title: 'Press & Media',
@@ -12,17 +17,36 @@ export function MediaPage() {
   usePageMeta(meta)
   return (
     <>
-      <PageHero
+      <ProductHero
         eyebrow="Press & Media"
-        title="News, Announcements, and Coverage"
-        description={`Follow what is new at Playlog and how the industry is talking about out-of-home advertising. For media inquiries, write to ${siteConfig.email}.`}
-        primary={{ label: 'Browse Updates', to: '#updates' }}
-        visual={<InsightsScene />}
+        title="News, Announcements,"
+        accent="and Coverage"
+        description="Follow what is new at Playlog and how the industry is talking about out-of-home advertising."
+        primary={{ label: 'Browse updates', to: '#updates' }}
+        secondary={{ label: 'Media inquiries', to: `mailto:${siteConfig.email}` }}
+        visual={
+          <HeroCompose
+            variant="card"
+            photo={{
+              src: '/media/billboard-corner.webp',
+              alt: 'Large digital billboard at a city corner',
+              position: '50% 50%',
+            }}
+          >
+            <HeroNoteCard
+              eyebrow="Media inquiries"
+              title={siteConfig.email}
+              meta="Write to our team"
+              to={`mailto:${siteConfig.email}`}
+            />
+          </HeroCompose>
+        }
       />
       <ContentListing
         id="updates"
-        title="Latest from Playlog"
-        description="Press releases, company announcements, and coverage in one place."
+        eyebrow="Latest from Playlog"
+        title="Press Releases, Announcements, and Coverage"
+        description="Company news and coverage in one place."
         items={mediaItems}
         basePath={routes.media}
         searchLabel="Search press and media"
@@ -32,6 +56,10 @@ export function MediaPage() {
         title="Want to Talk to Our Team?"
         description="Whether you are a journalist, a partner, or a brand exploring OOH, we would like to hear from you."
         primary={{ label: 'Get in Touch', to: ctaLinks.talkToExpert }}
+        image={{
+          src: '/media/billboard-station-wide.webp',
+          alt: 'Wide digital billboard in a station',
+        }}
       />
     </>
   )

@@ -11,17 +11,17 @@ export function FeatureCard({
   return (
     <div
       className={cn(
-        'h-full rounded-2xl p-6 transition-[box-shadow,transform,border-color] duration-300 ease-out-expo hover:-translate-y-1 md:p-7',
+        'h-full rounded-2xl p-7 transition-[box-shadow,transform,border-color] duration-500 ease-out-expo hover:-translate-y-1 md:p-9',
         tone === 'light'
           ? 'border border-slate-200 bg-white shadow-card hover:shadow-lift'
           : 'border border-white/12 bg-white/6 hover:border-mint-400/50 hover:bg-white/9',
       )}
     >
-      <IconTile icon={icon} tone={tone === 'light' ? 'light' : 'dark'} />
+      <IconTile icon={icon} tone={tone === 'light' ? 'light' : 'dark'} className="size-14" />
       <h3 className={cn('mt-6 text-h3', tone === 'light' ? 'text-ink' : 'text-white')}>{title}</h3>
       <p
         className={cn(
-          'mt-2.5 leading-relaxed',
+          'mt-3 text-lg leading-relaxed',
           tone === 'light' ? 'text-slate-600' : 'text-white/72',
         )}
       >
@@ -49,7 +49,7 @@ export function FeatureGrid({
   className?: string
 }) {
   return (
-    <ul className={cn('grid gap-5', cols[columns], className)}>
+    <ul className={cn('grid gap-6', cols[columns], className)}>
       {items.map((item, i) => (
         <li key={item.title}>
           <Reveal delay={(i % 3) * 0.08} className="h-full">

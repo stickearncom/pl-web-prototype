@@ -12,6 +12,7 @@ export const blogItems: ContentItem[] = [
     date: '2026-10-20',
     readTime: '7 min read',
     coverVariant: 2,
+    image: '/media/billboard-flyover.webp',
     isSample: true,
     body: sampleBody(
       'Out-of-home (OOH) advertising reaches people outside their homes: on roads, in business districts, and in public spaces.',
@@ -33,6 +34,7 @@ export const blogItems: ContentItem[] = [
     date: '2026-10-12',
     readTime: '6 min read',
     coverVariant: 0,
+    image: '/media/billboard-corner-led.webp',
     isSample: true,
     body: sampleBody(
       'Static and digital billboards solve different problems. The right choice depends on what you need the campaign to do.',
@@ -54,6 +56,7 @@ export const blogItems: ContentItem[] = [
     date: '2026-10-05',
     readTime: '6 min read',
     coverVariant: 4,
+    image: '/media/billboard-avenue.webp',
     isSample: true,
     body: sampleBody(
       'Budgeting for OOH is mostly about focus. A few strong locations usually beat many weak ones.',
@@ -75,6 +78,7 @@ export const blogItems: ContentItem[] = [
     date: '2026-09-27',
     readTime: '5 min read',
     coverVariant: 5,
+    image: '/media/billboard-mobile-led.webp',
     isSample: true,
     body: sampleBody(
       'A clear brief saves rounds of revisions. It tells planners what success looks like and what is flexible.',
@@ -95,6 +99,7 @@ export const blogItems: ContentItem[] = [
     date: '2026-09-15',
     readTime: '5 min read',
     coverVariant: 1,
+    image: '/media/billboard-station-wide.webp',
     isSample: true,
     body: sampleBody(
       'The vocabulary of OOH can feel heavy at first. These are the four terms that come up in almost every plan.',
@@ -116,6 +121,7 @@ export const blogItems: ContentItem[] = [
     date: '2026-09-02',
     readTime: '4 min read',
     coverVariant: 3,
+    image: '/media/billboard-facade-superstar.webp',
     isSample: true,
     body: sampleBody(
       'First campaigns go smoother with a simple checklist.',

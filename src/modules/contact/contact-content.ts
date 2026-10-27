@@ -7,7 +7,9 @@ export const contactContent = {
       'Talk to the Playlog team about a demo, your next billboard campaign, or partnering with your media inventory.',
   },
   hero: {
-    title: 'Let’s Find the Right Way to Move Your OOH Forward',
+    eyebrow: 'Contact',
+    title: 'Let’s Find the Right Way to',
+    accent: 'Move Your OOH Forward',
     description:
       'Whether you’re exploring Playlog, planning your next billboard campaign, or looking to grow your media business, our team is ready to help you find the right solution.',
   },
@@ -23,6 +25,7 @@ export const contactContent = {
         description:
           'Discover how Playlog can help you plan, manage, and measure billboard campaigns with data and technology.',
         cta: 'Request a Demo',
+        image: '/media/billboard-aqua-wall.webp',
       },
       {
         value: 'advertising',
@@ -33,6 +36,7 @@ export const contactContent = {
         description:
           'Tell us your campaign objectives, and we’ll help you explore billboard and digital billboard opportunities that fit your needs.',
         cta: 'Talk to Our Team',
+        image: '/media/billboard-mobile-led.webp',
       },
       {
         value: 'partnership',
@@ -43,10 +47,26 @@ export const contactContent = {
         description:
           'Connect your billboard and digital billboard inventory with brands and agencies looking for advertising opportunities.',
         cta: 'Become a Media Partner',
+        image: '/media/billboard-station-wide.webp',
       },
     ],
   },
   form: {
+    eyebrow: 'Send a message',
+    next: [
+      {
+        title: 'We review your request',
+        description: 'Your message goes straight to the Playlog team.',
+      },
+      {
+        title: 'We reach out',
+        description: 'Expect a reply from our team with the right next step.',
+      },
+      {
+        title: 'We get you started',
+        description: 'A demo, a campaign plan, or a partnership call.',
+      },
+    ],
     title: 'Tell Us What You’re Looking For',
     description:
       'Share a few details with us. Our team will get back to you with the right next step.',

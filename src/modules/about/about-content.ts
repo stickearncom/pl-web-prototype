@@ -11,10 +11,17 @@ export const aboutContent = {
   },
   hero: {
     eyebrow: 'The evolution of OOH',
-    title: 'From Outdoor Spaces to Smarter Advertising',
+    title: 'From Outdoor Spaces to',
+    accent: 'Smarter Advertising',
     description:
       'Out-of-Home advertising has always been about being seen in the right place. But as the industry grows, knowing where to advertise, who you can reach, and what your campaign delivers requires more than visibility. Playlog was built to bring data and technology into OOH, connecting billboard inventory, market intelligence, campaign execution, and measurement in one integrated platform.',
-    journey: [
+    primary: { label: 'Explore Playlog', to: `${routes.home}#platform` },
+    secondary: { label: 'Talk to our team', to: routes.contact },
+  },
+  journey: {
+    eyebrow: 'How OOH evolved',
+    title: 'Four stages of an industry growing up',
+    steps: [
       {
         stage: 1,
         title: 'OOH Begins',
@@ -40,6 +47,7 @@ export const aboutContent = {
       'Playlog brings OOH into a more connected and data-driven era. Built in Indonesia. Built for the future of OOH.',
   },
   mission: {
+    eyebrow: 'What we do',
     title: 'Making OOH Smarter, One Billboard at a Time',
     description:
       'Playlog is a technology platform for Out-of-Home advertising, helping brands and agencies make smarter decisions across the billboard journey, from planning and site selection to campaign monitoring and performance reporting.',
@@ -69,6 +77,7 @@ export const aboutContent = {
     ] satisfies FeatureItem[],
   },
   campaigns: {
+    eyebrow: 'By the numbers',
     title: 'Built Around Real Campaigns',
     description:
       'Connecting advertisers to thousands of billboard assets across Indonesia’s fastest growing metropolitan areas.',

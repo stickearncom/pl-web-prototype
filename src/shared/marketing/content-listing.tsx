@@ -5,7 +5,6 @@ import { Section } from '@/shared/layout'
 import { cn } from '@/shared/lib'
 import { Reveal } from '@/shared/ui'
 import { ContentCard } from './content-card'
-import { SectionHeader } from './section-header'
 
 /** Search, category filter, and a card grid. One template for articles, reports, guides, and press. */
 export function ContentListing({
@@ -17,6 +16,7 @@ export function ContentListing({
   basePath,
   searchLabel = 'Search',
   tone = 'default',
+  featureFirst = false,
 }: {
   id?: string
   eyebrow?: string
@@ -26,6 +26,8 @@ export function ContentListing({
   basePath: string
   searchLabel?: string
   tone?: 'default' | 'muted'
+  /** Show the first result as a wide card when nothing is filtered. */
+  featureFirst?: boolean
 }) {
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState('All')
@@ -44,11 +46,24 @@ export function ContentListing({
     )
   }, [items, query, category])
 
+  const isFiltered = query.trim() !== '' || category !== 'All'
+  const featured = featureFirst && !isFiltered && results.length >= 3 ? results[0] : undefined
+  const rest = featured ? results.slice(1) : results
+
   return (
     <Section id={id} tone={tone}>
-      <SectionHeader eyebrow={eyebrow} title={title} description={description} />
+      <Reveal className="max-w-3xl">
+        {eyebrow && (
+          <p className="flex items-center gap-3 text-eyebrow text-brand-700">
+            <span aria-hidden className="h-0.5 w-8 bg-mint-500" />
+            {eyebrow}
+          </p>
+        )}
+        <h2 className="mt-6 text-h1 text-ink">{title}</h2>
+        <p className="mt-6 text-lead text-slate-600">{description}</p>
+      </Reveal>
 
-      <div className="mt-10 flex flex-col gap-5 md:mt-14 lg:flex-row lg:items-center lg:justify-between">
+      <div className="mt-12 flex flex-col gap-5 md:mt-16 lg:flex-row lg:items-center lg:justify-between">
         <div className="relative w-full lg:max-w-sm">
           <label htmlFor={inputId} className="sr-only">
             {searchLabel}
@@ -95,17 +110,24 @@ export function ContentListing({
       </p>
 
       {results.length > 0 ? (
-        <ul className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {results.map((item, i) => (
-            <li key={item.slug}>
-              <Reveal delay={(i % 3) * 0.06} className="h-full">
-                <ContentCard item={item} basePath={basePath} />
-              </Reveal>
-            </li>
-          ))}
-        </ul>
+        <>
+          {featured && (
+            <Reveal className="mt-10">
+              <ContentCard item={featured} basePath={basePath} featured />
+            </Reveal>
+          )}
+          <ul className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {rest.map((item, i) => (
+              <li key={item.slug}>
+                <Reveal delay={(i % 3) * 0.06} className="h-full">
+                  <ContentCard item={item} basePath={basePath} />
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </>
       ) : (
-        <div className="mt-10 rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center">
+        <div className="mt-10 rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center">
           <p className="text-h3">Nothing matches your search</p>
           <p className="mt-2 text-slate-600">Try a different keyword or choose another category.</p>
         </div>

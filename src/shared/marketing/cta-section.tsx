@@ -11,12 +11,14 @@ export function CtaSection({
   primary,
   secondary,
   id,
+  image = { src: '/media/billboard-corner.webp', alt: 'Large digital billboard at a city corner' },
 }: {
   title: ReactNode
   description?: ReactNode
   primary: Cta
   secondary?: Cta
   id?: string
+  image?: { src: string; alt: string }
 }) {
   return (
     <Section tone="dark" id={id}>
@@ -45,11 +47,7 @@ export function CtaSection({
           </div>
         </Reveal>
         <Reveal delay={0.1} className="pl-4">
-          <PhotoFrame
-            src="/media/billboard-corner.webp"
-            alt="Large digital billboard at a city corner"
-            className="aspect-[4/3]"
-          />
+          <PhotoFrame src={image.src} alt={image.alt} className="aspect-[4/3]" />
         </Reveal>
       </div>
     </Section>

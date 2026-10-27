@@ -9,7 +9,9 @@ export const billboardContent = {
       'Explore strategic billboard opportunities across Indonesia and choose locations based on audience exposure and market intelligence.',
   },
   hero: {
-    title: 'Find the Right Billboard. Make Every Location Count.',
+    eyebrow: 'Billboard',
+    title: 'Find the Right Billboard.',
+    accent: 'Make Every Location Count.',
     description:
       'Explore strategic billboard opportunities across Indonesia and choose locations based on your campaign objectives and data.',
     primary: { label: 'Start Campaign', to: ctaLinks.startCampaign },
@@ -95,19 +97,23 @@ export const billboardContent = {
         locations: 20,
         impressions: 162690964,
         cities: 12,
-        tone: 'blue',
-        seed: 0,
+        image: '/media/billboard-corner-led.webp',
       },
-      { name: 'Adidas', locations: 1, impressions: 12257100, cities: 1, tone: 'white', seed: 1 },
-      { name: 'Lego', locations: 5, impressions: 8142768, cities: 2, tone: 'mint', seed: 2 },
-    ] as {
-      name: string
-      locations: number
-      impressions: number
-      cities: number
-      tone: 'blue' | 'white' | 'mint' | 'navy'
-      seed: number
-    }[],
+      {
+        name: 'Adidas',
+        locations: 1,
+        impressions: 12257100,
+        cities: 1,
+        image: '/media/billboard-facade-superstar.webp',
+      },
+      {
+        name: 'Lego',
+        locations: 5,
+        impressions: 8142768,
+        cities: 2,
+        image: '/media/billboard-lego-bridge.webp',
+      },
+    ],
     cta: { label: 'See What Brands Achieved with Playlog', to: routes.insightArticles },
   },
   form: {
